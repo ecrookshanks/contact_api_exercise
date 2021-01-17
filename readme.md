@@ -33,4 +33,6 @@ Instead of running on port 8080 (the default tomcat port) I have used the ```app
 ### Implementation Notes
 * Because of how the sample data was created and some inconsistances around that, the ```CascadeType.ALL``` setting was not used on the ```@OneToMany``` relationship of ```Contact```s to ```Phone``` objects.  The addition/removal of this collection's objects was handled manually.
 
-* Simple repositories were used as the specification was only data in/data out, and the overall exercise was loosely time-boxed.  A more thorough way that would include or provide for business logic is to use Service classes (implemented as interfaces/concrete objects) and have the controller interact with the service interface, which uses a repository interface.  The use of interfaces in this manner would allow for unit testing of the business logic with a mocking framework.
+* The application uses the H2 in-memory database; each run will start with the sample data mentioned above and will be removed once the application is shut down.
+
+* Simple repositories were used as the specification was only data in/data out, and the overall exercise was loosely time-boxed.  A more thorough way that would include or provide for business logic is to use Service classes (implemented as interfaces/concrete objects) and have the controller interact with the service interface, which uses a repository interface.  The use of interfaces in this manner would allow for unit testing of the business logic with a mocking framework.  Later expansions to this project may include these features.
