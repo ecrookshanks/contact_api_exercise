@@ -49,10 +49,7 @@ public class LoadInitialData {
                 "contact4@mail.com");
 
         Contact nc = contactRepo.save(c);
-        for(Phone p: nc.getPhones()){
-            p.setContact(nc);
-            phoneRepo.save(p);
-        }
+
     }
 
     private void CreateContactThree(ContactRepository contactRepo, PhoneRepository phoneRepo, UserAddressRepository addressRepo, UserNameRepository nameRepo) {
@@ -68,12 +65,8 @@ public class LoadInitialData {
                 "contact2@mail.com");
 
         Contact nc = contactRepo.save(c);
-        for(Phone p: nc.getPhones()){
-            p.setContact(nc);
-            phoneRepo.save(p);
-        }
-    }
 
+    }
 
     private void CreateContactTwo(ContactRepository contactRepo, PhoneRepository phoneRepo, UserAddressRepository addressRepo, UserNameRepository nameRepo) {
         ArrayList<Phone> phoneList = new ArrayList<>();
@@ -88,10 +81,7 @@ public class LoadInitialData {
                 "contact2@mail.com");
 
         Contact nc = contactRepo.save(c);
-        for(Phone p: nc.getPhones()){
-            p.setContact(nc);
-            phoneRepo.save(p);
-        }
+
     }
 
     private void CreateContactOne(ContactRepository contactRepo, PhoneRepository phoneRepo, UserAddressRepository addressRepo, UserNameRepository nameRepo) {
