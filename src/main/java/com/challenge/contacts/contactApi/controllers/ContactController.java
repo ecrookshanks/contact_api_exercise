@@ -86,17 +86,9 @@ public class ContactController {
             phoneRepository.save(p);
         }
 
-        List<Phone> newPhones = new ArrayList<>();
-        for (Phone p: contact.getPhones()){
-            newPhones.add(phoneRepository.save(p));
-        }
-        contactData.setPhones(newPhones);
+        contactData.setPhones(contact.getPhones());
 
         Contact updatedContact = contactRepository.save(contactData);
-        for (Phone p: updatedContact.getPhones()){
-            p.setContact(updatedContact);
-            phoneRepository.save(p);
-        }
 
         return new ResponseEntity<>(updatedContact, HttpStatus.OK);
     }
@@ -110,17 +102,10 @@ public class ContactController {
 
         UserAddress newUserAddress = userAddressRepository.save(address);
         UserName newUserName = userNameRepository.save(userName);
-        for(Phone p: phones){
-            phoneRepository.save(p);
-        }
+
         Contact newContact = new Contact(newUserName, newUserAddress, phones, contact.getEmail());
 
         Contact savedContact = this.contactRepository.save(newContact);
-
-        for(Phone p: savedContact.getPhones()){
-            p.setContact(savedContact);
-            phoneRepository.save(p);
-        }
 
         return new ResponseEntity<>(savedContact, HttpStatus.OK);
     }

@@ -31,7 +31,6 @@ public class LoadInitialData {
         CreateContactThree(contactRepo, phoneRepo, addressRepo, nameRepo);
         CreateContactFour(contactRepo, phoneRepo, addressRepo, nameRepo);
 
-
         return args -> {
             log.info("Sample contact data created!");
         };
@@ -108,10 +107,7 @@ public class LoadInitialData {
                 "contact1@mail.com");
 
         Contact nc = contactRepo.save(c);
-        for(Phone p: nc.getPhones()){
-            p.setContact(nc);
-            phoneRepo.save(p);
-        }
+
     }
 
     private UserAddress CreateAddress(UserAddressRepository repo,
@@ -124,19 +120,19 @@ public class LoadInitialData {
     private Phone CreateMobilePhone(PhoneRepository repo, String num){
         Phone ph = new Phone(num, Phone.PHONE_MOBILE);
         log.info(String.format("Created Phone %s of type %s", ph.getNumber(), ph.getType()));
-        return repo.save(ph);
+        return ph;
     }
 
     private Phone CreateWorkPhone(PhoneRepository repo, String num){
         Phone ph = new Phone(num, Phone.PHONE_WORK);
         log.info(String.format("Created Phone %s of type %s", ph.getNumber(), ph.getType()));
-        return repo.save(ph);
+        return ph;
     }
 
     private Phone CreateHomePhone(PhoneRepository repo, String num){
         Phone ph = new Phone(num, Phone.PHONE_HOME);
         log.info(String.format("Created Phone %s of type %s", ph.getNumber(), ph.getType()));
-        return repo.save(ph);
+        return ph;
     }
 
     private UserName CreateUser(UserNameRepository repo, String first, String middle, String last){

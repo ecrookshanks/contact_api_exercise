@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -29,9 +30,9 @@ public class Contact {
     @JsonIgnoreProperties("contact")
     private UserAddress userAddress;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "contact")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "contact", cascade = CascadeType.ALL)
     @JsonIgnoreProperties("contact")
-    private List<Phone> phones;
+    private List<Phone> phones = new ArrayList<>();
 
     @Column
     private String email;
@@ -82,6 +83,11 @@ public class Contact {
 
     public void setPhones(List<Phone> phones) {
         this.phones = phones;
+
+        // This is key to establising the bi-directional linking.
+        for(Phone p: this.phones){
+            p.setContact(this);
+        }
     }
 
     public String getEmail() {
